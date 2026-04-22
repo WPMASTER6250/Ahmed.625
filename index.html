@@ -1,477 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Registration System</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malik Automation - Registration Form</title>
 
-    body 
-          body <div class="watermark">Malik Automation</div>  {
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
   margin: 0;
   padding: 20px;
   background: linear-gradient(135deg, #dbeafe, #eff6ff);
 }
-    
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
 
-    .title {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+/* Watermark */
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-size: 60px;
+  font-weight: bold;
+  color: rgba(0,0,0,0.05);
+  pointer-events: none;
+}
 
-    .title h1 {
-      margin: 0 0 8px;
-      font-size: 40px;
-      color: #2563eb;
-    }
+/* Container */
+.container {
+  max-width: 900px;
+  margin: auto;
+}
 
-    .title p {
-      margin: 0;
-      color: #4b5563;
-      font-size: 16px;
-    }
+/* Title */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .card {
-      background: #ffffff;
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      margin-bottom: 20px;
-    }
+.title h1 {
+  margin: 0;
+  font-size: 36px;
+  color: #2563eb;
+}
 
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: 18px;
-      font-size: 28px;
-      color: #0f172a;
-    }
+/* Card */
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
 
-    .form-group {
-      margin-bottom: 16px;
-    }
+/* Form */
+.form-group {
+  margin-bottom: 15px;
+}
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #374151;
-    }
+label {
+  display: block;
+  margin-bottom: 5px;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #cbd5e1;
-      border-radius: 14px;
-      font-size: 16px;
-      outline: none;
-      background: #fff;
-    }
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 
-    input:focus,
-    select:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-    }
+.phone-row {
+  display: flex;
+  gap: 10px;
+}
 
-    .phone-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+.phone-row input {
+  flex: 1;
+}
 
-    .phone-row input {
-      flex: 1;
-    }
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-    .call-btn {
-      min-width: 60px;
-      height: 52px;
-      border: none;
-      background: #10b981;
-      color: white;
-      font-size: 22px;
-      border-radius: 14px;
-      cursor: pointer;
-    }
+.submit-btn {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  font-size: 18px;
+}
 
-    .submit-btn {
-      width: 100%;
-      border: none;
-      background: #2563eb;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 14px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 8px;
-    }
+.call-btn {
+  background: #10b981;
+  color: white;
+}
 
-    .submit-btn:hover {
-      background: #1d4ed8;
-    }
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-    .message {
-      display: none;
-      padding: 12px 14px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      font-size: 14px;
-      font-weight: 600;
-    }
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
 
-    .message.success {
-      display: block;
-      background: #dcfce7;
-      color: #166534;
-    }
+.action-btn {
+  margin-right: 5px;
+  padding: 5px 10px;
+}
 
-    .message.error {
-      display: block;
-      background: #fee2e2;
-      color: #991b1b;
-    }
+.edit-btn {
+  background: orange;
+  color: white;
+}
 
-    .table-wrap {
-      overflow-x: auto;
-    }
+.delete-btn {
+  background: red;
+  color: white;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 700px;
-    }
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
 
-    th,
-    td {
-      padding: 14px 12px;
-      text-align: left;
-      border-bottom: 1px solid #e5e7eb;
-      font-size: 15px;
-    }
-
-    th {
-      background: #f8fafc;
-      color: #111827;
-    }
-
-    .empty {
-      text-align: center;
-      color: #6b7280;
-      padding: 20px;
-    }
-
-    .action-btn {
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-      margin-right: 6px;
-      font-size: 13px;
-    }
-
-    .edit-btn {
-      background: #f59e0b;
-    }
-
-    .delete-btn {
-      background: #ef4444;
-    }
-
-    @media (max-width: 768px) {
-      .title h1 {
-        font-size: 28px;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      .card h2 {
-        font-size: 22px;
-      }
-
-      input,
-      select {
-        font-size: 15px;
-        padding: 12px 14px;
-      }
-
-      .submit-btn {
-        font-size: 18px;
-      }
-
-      .call-btn {
-        min-width: 56px;
-        height: 48px;
-      }
-    }
-  </style>
+.success { background: #d1fae5; }
+.error { background: #fee2e2; }
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="title">
-      <h1>Student Registration System</h1>
-      <p>Register and manage student records</p>
-    </div>
 
-    <div class="card">
-      <h2 id="formHeading">Register Student</h2>
+<div class="watermark">Malik Automation</div>
 
-      <div id="messageBox" class="message"></div>
+<div class="container">
 
-      <form id="studentForm">
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" placeholder="Enter full name" required />
-        </div>
-
-        <div class="form-group">
-          <label for="studentId">Student ID</label>
-          <input type="text" id="studentId" placeholder="Enter student ID" required />
-        </div>
-
-        <div class="form-group">
-  <label for="department">Course</label>
-  <select id="department" required>
-    <option value="">Select course</option>
-    <option value="Facebook">Facebook</option>
-    <option value="TikTok">TikTok</option>
-  </select>
+<div class="title">
+  <h1>Registration Form</h1>
 </div>
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter email" required />
-        </div>
+<div id="message"></div>
 
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <div class="phone-row">
-            <input type="text" id="phone" placeholder="Enter phone number" required />
-            <button type="button" id="callBtn" class="call-btn">📞</button>
-          </div>
-        </div>
+<div class="card">
+<form id="studentForm">
 
-        <button type="submit" id="submitBtn" class="submit-btn">Register Student</button>
-      </form>
-    </div>
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" id="name" required>
+</div>
 
-    <div class="card">
-      <h2>Registered Students</h2>
+<div class="form-group">
+<label>Student ID</label>
+<input type="text" id="studentId" required>
+</div>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>ID</th>
-              <th>Department</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="studentTableBody">
-            <tr>
-              <td colspan="6" class="empty">No students registered yet.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<div class="form-group">
+<label>Course</label>
+<select id="course" required>
+<option value="">Select course</option>
+<option>Facebook</option>
+<option>TikTok</option>
+</select>
+</div>
 
-  <script>
-    const studentForm = document.getElementById("studentForm");
-    const fullName = document.getElementById("fullName");
-    const studentId = document.getElementById("studentId");
-    const department = document.getElementById("department");
-    const email = document.getElementById("email");
-    const phone = document.getElementById("phone");
-    const callBtn = document.getElementById("callBtn");
-    const studentTableBody = document.getElementById("studentTableBody");
-    const submitBtn = document.getElementById("submitBtn");
-    const formHeading = document.getElementById("formHeading");
-    const messageBox = document.getElementById("messageBox");
+<div class="form-group">
+<label>Email</label>
+<input type="email" id="email" required>
+</div>
 
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-    let editIndex = -1;
+<div class="form-group">
+<label>Phone</label>
+<div class="phone-row">
+<input type="text" id="phone" required>
+<button type="button" class="call-btn" onclick="callNumber()">📞</button>
+</div>
+</div>
 
-    function showMessage(text, type) {
-      messageBox.textContent = text;
-      messageBox.className = "message " + type;
+<button type="submit" class="submit-btn">Register Student</button>
 
-      setTimeout(() => {
-        messageBox.className = "message";
-        messageBox.textContent = "";
-      }, 2500);
-    }
+</form>
+</div>
 
-    function saveToLocalStorage() {
-      localStorage.setItem("students", JSON.stringify(students));
-    }
+<div class="card">
+<h2>Registered Students</h2>
 
-    function validateEmail(emailValue) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
-    }
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>ID</th>
+<th>Course</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Actions</th>
+</tr>
+</thead>
 
-    function validatePhone(phoneValue) {
-      return /^[0-9+\-\s]{7,15}$/.test(phoneValue);
-    }
+<tbody id="tableBody"></tbody>
+</table>
 
-    function renderStudents() {
-      studentTableBody.innerHTML = "";
+</div>
 
-      if (students.length === 0) {
-        studentTableBody.innerHTML = `
-          <tr>
-            <td colspan="6" class="empty">No students registered yet.</td>
-          </tr>
-        `;
-        return;
-      }
+</div>
 
-      students.forEach((student, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${student.fullName}</td>
-          <td>${student.studentId}</td>
-          <td>${student.department}</td>
-          <td>${student.email}</td>
-          <td>${student.phone}</td>
-          <td>
-            <button type="button" class="action-btn edit-btn" onclick="editStudent(${index})">Edit</button>
-            <button type="button" class="action-btn delete-btn" onclick="deleteStudent(${index})">Delete</button>
-          </td>
-        `;
-        studentTableBody.appendChild(row);
-      });
-    }
+<script>
+const form = document.getElementById("studentForm");
+const tableBody = document.getElementById("tableBody");
+const message = document.getElementById("message");
 
-    function resetForm() {
-      studentForm.reset();
-      editIndex = -1;
-      submitBtn.textContent = "Register Student";
-      formHeading.textContent = "Register Student";
-    }
+let students = [];
 
-    studentForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+function showMessage(text, type) {
+  message.innerHTML = `<div class="message ${type}">${text}</div>`;
+}
 
-      const nameValue = fullName.value.trim();
-      const idValue = studentId.value.trim();
-      const departmentValue = department.value;
-      const emailValue = email.value.trim();
-      const phoneValue = phone.value.trim();
+function callNumber() {
+  const phone = document.getElementById("phone").value;
+  if(phone) window.location.href = "tel:" + phone;
+}
 
-      if (!nameValue || !idValue || !departmentValue || !emailValue || !phoneValue) {
-        showMessage("Please fill all fields.", "error");
-        return;
-      }
+form.addEventListener("submit", function(e){
+  e.preventDefault();
 
-      if (!validateEmail(emailValue)) {
-        showMessage("Please enter a valid email.", "error");
-        return;
-      }
+  const name = document.getElementById("name").value;
+  const id = document.getElementById("studentId").value;
+  const course = document.getElementById("course").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
 
-      if (!validatePhone(phoneValue)) {
-        showMessage("Please enter a valid phone number.", "error");
-        return;
-      }
+  if(!name || !id || !course || !email || !phone){
+    showMessage("Fill all fields", "error");
+    return;
+  }
 
-      const duplicateIndex = students.findIndex((student, index) => {
-        return student.studentId.toLowerCase() === idValue.toLowerCase() && index !== editIndex;
-      });
+  students.push({name, id, course, email, phone});
+  renderTable();
+  form.reset();
+  showMessage("Student Added", "success");
+});
 
-      if (duplicateIndex !== -1) {
-        showMessage("Student ID already exists.", "error");
-        return;
-      }
+function renderTable(){
+  tableBody.innerHTML = "";
 
-      const studentData = {
-        fullName: nameValue,
-        studentId: idValue,
-        department: departmentValue,
-        email: emailValue,
-        phone: phoneValue
-      };
+  students.forEach((s, index) => {
+    const row = document.createElement("tr");
 
-      if (editIndex === -1) {
-        students.push(studentData);
-        showMessage("Student registered successfully.", "success");
-      } else {
-        students[editIndex] = studentData;
-        showMessage("Student updated successfully.", "success");
-      }
+    row.innerHTML = `
+      <td>${s.name}</td>
+      <td>${s.id}</td>
+      <td>${s.course}</td>
+      <td>${s.email}</td>
+      <td>${s.phone}</td>
+      <td>
+        <button class="action-btn delete-btn" onclick="deleteStudent(${index})">Delete</button>
+      </td>
+    `;
 
-      saveToLocalStorage();
-      renderStudents();
-      resetForm();
-    });
+    tableBody.appendChild(row);
+  });
+}
 
-    callBtn.addEventListener("click", function () {
-      const number = phone.value.trim();
+function deleteStudent(index){
+  students.splice(index,1);
+  renderTable();
+}
+</script>
 
-      if (!number) {
-        showMessage("Enter phone number first.", "error");
-        return;
-      }
-
-      window.location.href = "tel:" + number;
-    });
-
-    function editStudent(index) {
-      const student = students[index];
-
-      fullName.value = student.fullName;
-      studentId.value = student.studentId;
-      department.value = student.department;
-      email.value = student.email;
-      phone.value = student.phone;
-
-      editIndex = index;
-      submitBtn.textContent = "Update Student";
-      formHeading.textContent = "Edit Student";
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    function deleteStudent(index) {
-      const isConfirmed = confirm("Are you sure you want to delete this student?");
-
-      if (!isConfirmed) {
-        return;
-      }
-
-      students.splice(index, 1);
-      saveToLocalStorage();
-      renderStudents();
-      showMessage("Student deleted successfully.", "success");
-
-      if (editIndex === index) {
-        resetForm();
-      }
-    }
-
-    window.editStudent = editStudent;
-    window.deleteStudent = deleteStudent;
-
-    renderStudents();
-  </script>
 </body>
 </html>
