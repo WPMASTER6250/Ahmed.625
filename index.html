@@ -1,284 +1,431 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Malik Automation - Registration Form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malik Automation - Registration Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-<style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+    body {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      min-height: 100vh;
+      color: #111827;
+    }
 
-body {
-  margin: 0;
-  padding: 20px;
-  background: linear-gradient(135deg, #dbeafe, #eff6ff);
-}
+    .watermark {
+      position: fixed;
+      top: 68%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      font-size: 56px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #ff4d4d, #7c3aed, #10b981, #2563eb, #f59e0b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+      text-align: center;
+      white-space: nowrap;
+    }
 
-/* Watermark */
-.watermark {
-position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-20deg);
-  font-size: 60px;
-  font-weight: bold;
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-  background: linear-gradient(45deg, red, blue, green, purple, orange);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  
-  opacity: 0.3;
-  pointer-events: none;
-}
+    .title {
+      text-align: center;
+      margin-bottom: 18px;
+    }
 
-/* Container */
-.container {
-  max-width: 900px;
-  margin: auto;
-}
+    .title h1 {
+      margin: 0;
+      color: #2563eb;
+      font-size: 38px;
+    }
 
-/* Title */
-.title {
-  text-align: center;
-  margin-bottom: 20px;
-}
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 18px;
+    }
 
-.title h1 {
-  margin: 0;
-  font-size: 36px;
-  color: #2563eb;
-}
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #374151;
+    }
 
-/* Card */
-.card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+      transition: 0.2s ease;
+      background: #fff;
+    }
 
-/* Form */
-.form-group {
-  margin-bottom: 15px;
-}
+    input:focus,
+    select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+    .phone-row {
+      display: grid;
+      grid-template-columns: 1fr 60px;
+      gap: 10px;
+      align-items: end;
+    }
 
-input, select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
+    .phone-btn {
+      height: 46px;
+      border: none;
+      border-radius: 10px;
+      background: #10b981;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+    }
 
-.phone-row {
-  display: flex;
-  gap: 10px;
-}
+    .primary-btn,
+    .secondary-btn,
+    .danger-btn {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
 
-.phone-row input {
-  flex: 1;
-}
+    .primary-btn {
+      width: 100%;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 700;
+    }
 
-button {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
+    .primary-btn:hover {
+      background: #1d4ed8;
+    }
 
-.submit-btn {
-  width: 100%;
-  background: #2563eb;
-  color: white;
-  font-size: 18px;
-}
+    .secondary-btn {
+      background: #111827;
+      color: #fff;
+    }
 
-.call-btn {
-  background: #10b981;
-  color: white;
-}
+    .secondary-btn:hover {
+      background: #000;
+    }
 
-/* Table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+    .danger-btn {
+      background: #dc2626;
+      color: #fff;
+    }
 
-th, td {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
+    .danger-btn:hover {
+      background: #b91c1c;
+    }
 
-.action-btn {
-  margin-right: 5px;
-  padding: 5px 10px;
-}
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
 
-.edit-btn {
-  background: orange;
-  color: white;
-}
+    .section-title {
+      margin: 0 0 14px 0;
+      font-size: 20px;
+      color: #111827;
+    }
 
-.delete-btn {
-  background: red;
-  color: white;
-}
+    .table-wrap {
+      overflow-x: auto;
+    }
 
-.message {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
 
-.success { background: #d1fae5; }
-.error { background: #fee2e2; }
-</style>
+    thead {
+      background: #f3f4f6;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 14px;
+    }
+
+    th {
+      color: #111827;
+    }
+
+    .small-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      background: #ef4444;
+      color: white;
+      font-size: 13px;
+    }
+
+    .small-btn:hover {
+      background: #dc2626;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #065f46;
+      font-weight: 600;
+      min-height: 20px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+
+      .title h1 {
+        font-size: 30px;
+      }
+
+      .watermark {
+        font-size: 42px;
+        top: 72%;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="watermark">Malik Automation</div>
 
-<div class="watermark">Malik Automation</div>
+  <div class="container">
+    <div class="title">
+      <h1>Registration Form</h1>
+    </div>
 
-<div class="container">
+    <div class="card">
+      <form id="studentForm">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter full name" required />
 
-<div class="title">
-  <h1>Registration Form</h1>
-</div>
+        <label for="studentId">Student ID</label>
+        <input type="text" id="studentId" placeholder="Enter student ID" required />
 
-<div id="message"></div>
+        <label for="course">Course</label>
+        <select id="course" required>
+          <option value="">Select course</option>
+          <option>Web Development</option>
+          <option>Graphic Design</option>
+          <option>Digital Marketing</option>
+          <option>MS Office</option>
+          <option>English Language</option>
+          <option>Computer Basics</option>
+        </select>
 
-<div class="card">
-<form id="studentForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter email" required />
 
-<div class="form-group">
-<label>Full Name</label>
-<input type="text" id="name" required>
-</div>
+        <label for="phone">Phone</label>
+        <div class="phone-row">
+          <input type="tel" id="phone" placeholder="Enter phone number" required />
+          <button type="button" class="phone-btn" title="Call">📞</button>
+        </div>
 
-<div class="form-group">
-<label>Student ID</label>
-<input type="text" id="studentId" required>
-</div>
+        <button type="submit" class="primary-btn">Register Student</button>
+        <div class="status" id="statusMsg"></div>
+      </form>
+    </div>
 
-<div class="form-group">
-<label>Course</label>
-<select id="course" required>
-<option value="">Select course</option>
-<option>Facebook</option>
-<option>TikTok</option>
-</select>
-</div>
+    <div class="card">
+      <div class="toolbar">
+        <button type="button" class="secondary-btn" id="showAdminBtn">Show My Student Data</button>
+        <button type="button" class="danger-btn hidden" id="hideAdminBtn">Hide Student Data</button>
+      </div>
 
-<div class="form-group">
-<label>Email</label>
-<input type="email" id="email" required>
-</div>
+      <div id="studentsSection" class="hidden">
+        <h2 class="section-title">Registered Students</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Course</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody"></tbody>
+          </table>
+        </div>
+        <p class="note">Yeh section sirf admin PIN se show hota hai on this browser.</p>
+      </div>
+    </div>
+  </div>
 
-<div class="form-group">
-<label>Phone</label>
-<div class="phone-row">
-<input type="text" id="phone" required>
-<button type="button" class="call-btn" onclick="callNumber()">📞</button>
-</div>
-</div>
+  <script>
+    const ADMIN_PIN = "7860";
 
-<button type="submit" class="submit-btn">Register Student</button>
+    const form = document.getElementById("studentForm");
+    const statusMsg = document.getElementById("statusMsg");
+    const studentTableBody = document.getElementById("studentTableBody");
+    const studentsSection = document.getElementById("studentsSection");
+    const showAdminBtn = document.getElementById("showAdminBtn");
+    const hideAdminBtn = document.getElementById("hideAdminBtn");
 
-</form>
-</div>
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    let adminView = localStorage.getItem("adminView") === "true";
 
-<div class="card">
-<h2>Registered Students</h2>
+    function saveStudents() {
+      localStorage.setItem("students", JSON.stringify(students));
+    }
 
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>ID</th>
-<th>Course</th>
-<th>Email</th>
-<th>Phone</th>
-<th>Actions</th>
-</tr>
-</thead>
+    function saveAdminView(value) {
+      localStorage.setItem("adminView", value ? "true" : "false");
+      adminView = value;
+      updateAdminView();
+    }
 
-<tbody id="tableBody"></tbody>
-</table>
+    function updateAdminView() {
+      if (adminView) {
+        studentsSection.classList.remove("hidden");
+        hideAdminBtn.classList.remove("hidden");
+      } else {
+        studentsSection.classList.add("hidden");
+        hideAdminBtn.classList.add("hidden");
+      }
+    }
 
-</div>
+    function renderStudents() {
+      studentTableBody.innerHTML = "";
 
-</div>
+      if (students.length === 0) {
+        studentTableBody.innerHTML = `
+          <tr>
+            <td colspan="6" style="text-align:center; color:#6b7280;">No student registered yet.</td>
+          </tr>
+        `;
+        return;
+      }
 
-<script>
-const form = document.getElementById("studentForm");
-const tableBody = document.getElementById("tableBody");
-const message = document.getElementById("message");
+      students.forEach((student, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${escapeHtml(student.fullName)}</td>
+          <td>${escapeHtml(student.studentId)}</td>
+          <td>${escapeHtml(student.course)}</td>
+          <td>${escapeHtml(student.email)}</td>
+          <td>${escapeHtml(student.phone)}</td>
+          <td><button class="small-btn" onclick="deleteStudent(${index})">Delete</button></td>
+        `;
+        studentTableBody.appendChild(row);
+      });
+    }
 
-let students = [];
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
 
-function showMessage(text, type) {
-  message.innerHTML = `<div class="message ${type}">${text}</div>`;
-}
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-function callNumber() {
-  const phone = document.getElementById("phone").value;
-  if(phone) window.location.href = "tel:" + phone;
-}
+      const student = {
+        fullName: document.getElementById("fullName").value.trim(),
+        studentId: document.getElementById("studentId").value.trim(),
+        course: document.getElementById("course").value,
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim()
+      };
 
-form.addEventListener("submit", function(e){
-  e.preventDefault();
+      if (!student.fullName || !student.studentId || !student.course || !student.email || !student.phone) {
+        statusMsg.style.color = "#b91c1c";
+        statusMsg.textContent = "Please fill all fields.";
+        return;
+      }
 
-  const name = document.getElementById("name").value;
-  const id = document.getElementById("studentId").value;
-  const course = document.getElementById("course").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
+      students.push(student);
+      saveStudents();
+      renderStudents();
+      form.reset();
 
-  if(!name || !id || !course || !email || !phone){
-    showMessage("Fill all fields", "error");
-    return;
-  }
+      statusMsg.style.color = "#065f46";
+      statusMsg.textContent = "Student registered successfully.";
+    });
 
-  students.push({name, id, course, email, phone});
-  renderTable();
-  form.reset();
-  showMessage("Student Added", "success");
-});
+    showAdminBtn.addEventListener("click", function () {
+      const pin = prompt("Enter admin PIN to view student details:");
 
-function renderTable(){
-  tableBody.innerHTML = "";
+      if (pin === null) return;
 
-  students.forEach((s, index) => {
-    const row = document.createElement("tr");
+      if (pin === ADMIN_PIN) {
+        saveAdminView(true);
+        alert("Admin view enabled.");
+      } else {
+        alert("Wrong PIN.");
+      }
+    });
 
-    row.innerHTML = `
-      <td>${s.name}</td>
-      <td>${s.id}</td>
-      <td>${s.course}</td>
-      <td>${s.email}</td>
-      <td>${s.phone}</td>
-      <td>
-        <button class="action-btn delete-btn" onclick="deleteStudent(${index})">Delete</button>
-      </td>
-    `;
+    hideAdminBtn.addEventListener("click", function () {
+      saveAdminView(false);
+      alert("Student details hidden.");
+    });
 
-    tableBody.appendChild(row);
-  });
-}
+    window.deleteStudent = function (index) {
+      const ok = confirm("Delete this student record?");
+      if (!ok) return;
 
-function deleteStudent(index){
-  students.splice(index,1);
-  renderTable();
-}
-</script>
+      students.splice(index, 1);
+      saveStudents();
+      renderStudents();
+    };
 
+    renderStudents();
+    updateAdminView();
+  </script>
 </body>
 </html>
